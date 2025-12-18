@@ -1,0 +1,26 @@
+﻿@model IEnumerable<TaskManagement.Models.TaskItem>
+
+<h2>Task List</h2>
+<a asp-action="Create">Add Task</a>
+
+<table border="1">
+	<tr>
+		<th>Title</th>
+		<th>Status</th>
+		<th>Created By</th>
+		<th>Action</th>
+	</tr>
+
+	@foreach (var t in Model)
+	{
+		<tr>
+			<td>@t.TaskTitle</td>
+			<td>@t.Status</td>
+			<td>@t.CreatedByName (@t.CreatedById)</td>
+			<td>
+				<a asp-action="Edit" asp-route-id="@t.Id">Edit</a> |
+				<a asp-action="Delete" asp-route-id="@t.Id">Delete</a>
+			</td>
+		</tr>
+	}
+</table>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TaskManagement.Models.TaskItem>
+
+@{
+    ViewData["Title"] = "Task List";
+}
+
+<h2>Task List</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Task</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Created On</th>
+            <th>Created By</th>
+            <th>Updated On</th>
+            <th>Updated By</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TaskTitle</td>
+                <td>@item.TaskDescription</td>
+                <td>@item.Status</td>
+                <td>@item.CreatedOn</td>
+                <td>@item.CreatedByName (@item.CreatedById)</td>
+                <td>@item.UpdatedOn</td>
+                <td>@item.UpdatedByName (@item.UpdatedById)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id"
+                       onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
